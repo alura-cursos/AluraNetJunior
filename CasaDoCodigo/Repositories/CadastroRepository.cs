@@ -8,7 +8,7 @@ namespace CasaDoCodigo.Repositories
 {
     public interface ICadastroRepository
     {
-        Cadastro Update(int cadastroId, Cadastro novoCadastro);
+        Task<Cadastro> Update(int cadastroId, Cadastro novoCadastro);
     }
 
     public class CadastroRepository : BaseRepository<Cadastro>, ICadastroRepository
@@ -17,7 +17,7 @@ namespace CasaDoCodigo.Repositories
         {
         }
 
-        public Cadastro Update(int cadastroId, Cadastro novoCadastro)
+        public async Task<Cadastro> Update(int cadastroId, Cadastro novoCadastro)
         {
             var cadastroDB = dbSet.Where(c => c.Id == cadastroId)
                 .SingleOrDefault();
@@ -28,7 +28,7 @@ namespace CasaDoCodigo.Repositories
             }
 
             cadastroDB.Update(novoCadastro);
-            contexto.SaveChanges();
+            await contexto.SaveChangesAsync();
             return cadastroDB;
         }
     }

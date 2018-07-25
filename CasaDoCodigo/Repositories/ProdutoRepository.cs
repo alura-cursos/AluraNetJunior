@@ -18,7 +18,7 @@ namespace CasaDoCodigo.Repositories
             return dbSet.ToList();
         }
 
-        public void SaveProdutos(List<Livro> livros)
+        public async Task SaveProdutos(List<Livro> livros)
         {
             foreach (var livro in livros)
             {
@@ -27,7 +27,7 @@ namespace CasaDoCodigo.Repositories
                     dbSet.Add(new Produto(livro.Codigo, livro.Nome, livro.Preco));
                 }
             }
-            contexto.SaveChanges();
+            await contexto.SaveChangesAsync();
         }
     }
 

@@ -67,7 +67,7 @@ namespace CasaDoCodigo
                     template: "{controller=Pedido}/{action=Carrossel}/{codigo?}");
             });
 
-            serviceProvider.GetService<IDataService>().InicializaDB();
+            serviceProvider.GetService<IDataService>().InicializaDB().Wait();
         }
     }
 
